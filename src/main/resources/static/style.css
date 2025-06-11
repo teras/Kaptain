@@ -1,0 +1,8 @@
+.card-label {
+  font-size: 130%;
+}
+
+.card {
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}

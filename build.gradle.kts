@@ -1,0 +1,20 @@
+plugins {
+    application
+    kotlin("jvm") version "2.1.21"
+    id("io.ktor.plugin") version "3.1.3"
+}
+
+application {
+    mainClass.set("onl.ycode.MainKt")
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("io.ktor:ktor-server-core:3.1.3")
+    implementation("io.ktor:ktor-server-netty:3.1.3")
+    implementation("io.ktor:ktor-server-html-builder:3.1.3")
+    implementation("ch.qos.logback:logback-classic:1.4.14")
+}

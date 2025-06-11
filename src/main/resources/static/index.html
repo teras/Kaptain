@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Cards</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <button class="button is-primary mb-4"
+                hx-post="/add-card"
+                hx-target="#cards"
+                hx-swap="beforeend">
+            ➕ Add
+        </button>
+
+        <div id="cards"></div>
+    </div>
+</section>
+</body>
+</html>
