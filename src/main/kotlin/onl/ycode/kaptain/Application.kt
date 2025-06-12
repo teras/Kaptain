@@ -1,4 +1,4 @@
-package onl.ycode.vmm
+package onl.ycode.kaptain
 
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -8,11 +8,11 @@ import io.ktor.server.routing.*
 import io.ktor.server.sse.*
 import kotlinx.html.a
 import kotlinx.html.body
-import onl.ycode.vmm.api.PluginInfo
-import onl.ycode.vmm.api.asResource
-import onl.ycode.vmm.api.response
-import onl.ycode.vmm.plugins.overview.overviewPlugin
-import onl.ycode.vmm.plugins.vmachines.vmachinesPlugin
+import onl.ycode.kaptain.api.PluginInfo
+import onl.ycode.kaptain.api.asResource
+import onl.ycode.kaptain.api.response
+import onl.ycode.kaptain.plugins.overview.overviewPlugin
+import onl.ycode.kaptain.plugins.vmachines.vmachinesPlugin
 
 fun Application.module() {
     install(SSE)

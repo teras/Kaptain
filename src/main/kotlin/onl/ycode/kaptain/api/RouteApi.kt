@@ -1,4 +1,4 @@
-package onl.ycode.vmm.api
+package onl.ycode.kaptain.api
 
 import io.ktor.http.*
 import io.ktor.server.routing.*

@@ -1,4 +1,4 @@
-package onl.ycode.vmm
+package onl.ycode.kaptain
 
 import io.ktor.server.application.Application
 import io.ktor.server.engine.embeddedServer

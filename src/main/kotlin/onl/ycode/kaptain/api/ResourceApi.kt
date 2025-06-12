@@ -1,4 +1,4 @@
-package onl.ycode.vmm.api
+package onl.ycode.kaptain.api
 
 private val cl = object {}.javaClass.classLoader
 

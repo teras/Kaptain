@@ -6,7 +6,7 @@ plugins {
 }
 
 application {
-    mainClass.set("onl.ycode.vmm.MainKt")
+    mainClass.set("onl.ycode.kaptain.MainKt")
 }
 
 repositories {

@@ -1,4 +1,4 @@
-package onl.ycode.vmm.api
+package onl.ycode.kaptain.api
 
 private val validName = Regex("^[a-z][a-z0-9]*$")
 
