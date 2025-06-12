@@ -1,0 +1,15 @@
+#overview-metrics .overview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+#overview-metrics .overview-graph-box {
+  height: 320px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  background-color: #fdfdfd;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

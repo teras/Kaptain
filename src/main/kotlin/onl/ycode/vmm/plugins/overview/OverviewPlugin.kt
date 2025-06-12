@@ -1,4 +1,4 @@
-package onl.ycode.vmm.plugins.about
+package onl.ycode.vmm.plugins.overview
 
 import io.ktor.server.routing.*
 import io.ktor.server.sse.*
@@ -6,36 +6,17 @@ import io.ktor.sse.*
 import kotlinx.coroutines.delay
 import kotlinx.serialization.json.JsonPrimitive
 import kotlinx.serialization.json.buildJsonObject
-import onl.ycode.vmm.api.PluginInfo
-import onl.ycode.vmm.api.response
-import kotlin.time.Duration.Companion.seconds
+import onl.ycode.vmm.api.initPlugin
 
-fun Route.aboutPlugin() {
-    val info = PluginInfo("about", "About").register()
+fun Route.overviewPlugin() {
+    val plugin = initPlugin(
+        "overview",
+        "Overview",
+        externalCss = listOf("https://unpkg.com/uplot/dist/uPlot.min.css"),
+        externalJS = listOf("https://unpkg.com/uplot/dist/uPlot.iife.min.js")
+    )
 
-    route(info.route) {
-        get {
-            info.resource("index.html")?.response(call)
-        }
-
-        sse("events") {
-            heartbeat {
-                period = 20.seconds
-                event = ServerSentEvent(comments = "heartbeat")
-            }
-            while (true) {
-                send(
-                    ServerSentEvent(
-                        data =
-                            "<span id=\"about_cpu\">${currentCPUUsage()}</span>" +
-                                    "<span id=\"about_mem\">${currentMemoryUsage()}</span>" +
-                                    "<span id=\"about_disk\">${currentDiskUsage()}</span>" +
-                                    "<span id=\"about_temp\">${currentTemperature()}</span>"
-                    )
-                )
-                delay(1000)
-            }
-        }
+    route(plugin.route) {
 
         sse("graph") {
             try {
@@ -57,8 +38,6 @@ fun Route.aboutPlugin() {
                 println("Error in SSE stream: ${e.message}")
             }
         }
-
-
     }
 }
 

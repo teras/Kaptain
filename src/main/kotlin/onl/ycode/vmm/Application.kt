@@ -3,7 +3,6 @@ package onl.ycode.vmm
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.html.*
-import io.ktor.server.http.content.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.sse.*
@@ -12,17 +11,33 @@ import kotlinx.html.body
 import onl.ycode.vmm.api.PluginInfo
 import onl.ycode.vmm.api.asResource
 import onl.ycode.vmm.api.response
-import onl.ycode.vmm.plugins.about.aboutPlugin
+import onl.ycode.vmm.plugins.overview.overviewPlugin
 import onl.ycode.vmm.plugins.vmachines.vmachinesPlugin
 
 fun Application.module() {
     install(SSE)
 
     routing {
-        staticResources("/static", "static")
-
         get("/") {
-            "static/index.html".asResource?.response(call)
+            val baIndex = "static/index.html".asResource ?: return@get call.respond(HttpStatusCode.NotFound)
+            val injected = PluginInfo.all.flatMap { p ->
+                val css = p.css.map { """    <link rel="stylesheet" href="$it">""" }
+                val js = p.js.map { """    <script src="$it"></script>""" }
+                css + js
+            }.joinToString("\n")
+
+            baIndex
+                .decodeToString()
+                .replace("<!-- PLUGIN-INJECTIONS -->", injected)
+                .response(call)
+        }
+
+        get("/style.css") {
+            "static/style.css".asResource?.response(call, ContentType.Text.CSS)
+        }
+
+        get("/script.js") {
+            "static/script.js".asResource?.response(call, ContentType.Text.JavaScript)
         }
 
         get("/backend-name") {
@@ -44,7 +59,7 @@ fun Application.module() {
             }
         }
 
-        aboutPlugin()
+        overviewPlugin()
         vmachinesPlugin()
     }
 }
