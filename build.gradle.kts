@@ -20,5 +20,6 @@ dependencies {
     implementation("io.ktor:ktor-server-sse:3.1.3")
     implementation("ch.qos.logback:logback-classic:1.5.18")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+    implementation("org.mapdb:mapdb:3.1.0")
 
 }

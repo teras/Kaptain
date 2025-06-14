@@ -1,6 +1,27 @@
-<h2>Virtual Machines</h2>
-<ul>
-    <li>vm1 (running)</li>
-    <li>vm2 (stopped)</li>
-    <li>vm3 (paused)</li>
-</ul>
+<div id="vmachines-metrics" data-plugin="vmachines">
+    <form id="vm-create-form" class="form-grid">
+        <label>Name:
+            <input type="text" name="name" required>
+        </label>
+
+        <label>ISO URL / Path:
+            <input type="text" name="iso" placeholder="https:// or /isos/...">
+        </label>
+
+        <label>Operating System:
+            <select name="osType"></select>
+        </label>
+
+        <label>Storage Size (GB):
+            <input type="number" name="diskSize" min="1" required>
+        </label>
+
+        <label>Memory (GB):
+            <input type="number" name="memSize" min="0.1" step="0.1" required>
+        </label>
+
+        <button type="submit">Create VM</button>
+
+        <div id="vm-status" class="form-status"></div>
+    </form>
+</div>
